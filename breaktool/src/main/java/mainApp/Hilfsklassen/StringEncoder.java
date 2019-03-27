@@ -1,4 +1,4 @@
-package HauptProgramm.Hilfsklassen;
+package mainApp.Hilfsklassen;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

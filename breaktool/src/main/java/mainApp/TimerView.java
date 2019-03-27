@@ -1,6 +1,5 @@
-package HauptProgramm;
+package mainApp;
 
-import HauptProgramm.Hilfsklassen.Eintrag;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,6 +16,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
+import mainApp.Hilfsklassen.Eintrag;
 
 class TimerView {
     private Button ende;

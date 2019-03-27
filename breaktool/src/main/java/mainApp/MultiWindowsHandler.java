@@ -1,8 +1,6 @@
-package HauptProgramm;
+package mainApp;
 
 import javafx.stage.Stage;
-
-import java.util.LinkedList;
 
 public class MultiWindowsHandler {
 

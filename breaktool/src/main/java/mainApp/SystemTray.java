@@ -1,4 +1,4 @@
-package HauptProgramm;
+package mainApp;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class SystemTray {
     private static java.awt.SystemTray systemTray;
-    private static java.util.LinkedList<java.awt.TrayIcon> trayIcons;
+    private static LinkedList<TrayIcon> trayIcons;
     public SystemTray(){
         if(systemTray==null)
         systemTray = getInstance();
@@ -21,7 +21,7 @@ public class SystemTray {
     }
 
     public void addImageAsTrayIcon(String path) throws AWTException, IOException {
-        java.awt.Image image = ImageIO.read(getClass().getResourceAsStream(path));
+        Image image = ImageIO.read(getClass().getResourceAsStream(path));
         TrayIcon trayIcon = new TrayIcon(image);
         systemTray.add(trayIcon);
         trayIcons.add(trayIcon);

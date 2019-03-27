@@ -1,6 +1,5 @@
-package HauptProgramm;
+package mainApp;
 
-import HauptProgramm.Hilfsklassen.Eintrag;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import mainApp.Hilfsklassen.Eintrag;
 
 public class ReasoncodeView {
     Button ok;

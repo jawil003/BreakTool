@@ -1,4 +1,4 @@
-package HauptProgramm.Hilfsklassen;
+package mainApp.Hilfsklassen;
 
 import java.awt.*;
 import java.io.FileOutputStream;

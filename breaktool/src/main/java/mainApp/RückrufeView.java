@@ -1,4 +1,4 @@
-package HauptProgramm;
+package mainApp;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

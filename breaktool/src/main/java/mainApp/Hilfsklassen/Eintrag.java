@@ -1,4 +1,4 @@
-package HauptProgramm.Hilfsklassen;
+package mainApp.Hilfsklassen;
 
 import java.io.Serializable;
 import java.util.Calendar;

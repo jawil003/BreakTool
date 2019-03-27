@@ -1,7 +1,7 @@
-package HauptProgramm.Hilfsklassen;
+package mainApp.Hilfsklassen;
 
 
-import HauptProgramm.MainGui;
+import mainApp.MainGui;
 
 import java.awt.*;
 import java.io.*;
