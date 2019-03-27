@@ -48,7 +48,7 @@ public class RückrufeView {
         rueckRufe = new ListView<>();
         Tooltip m = new Tooltip();
         m.setTextAlignment(TextAlignment.CENTER);
-        m.setText("Um einen Eintrag zu löschen\nbitte die <- Taste drücken");
+        m.setText("Um einen Entry zu löschen\nbitte die <- Taste drücken");
         rueckRufe.setTooltip(m);
         ListViewRückrufe();
         //pane.add(rueckRufe, 1, 0);

@@ -1,4 +1,4 @@
-package mainApp.Hilfsklassen;
+package mainApp.toolClasses;
 
 
 import mainApp.MainGui;
@@ -8,8 +8,8 @@ import java.io.*;
 import java.util.Calendar;
 import java.util.LinkedList;
 
-public class Eintragsverwaltung {
-    private LinkedList<Eintrag> pausensituationen;
+public class Entrymanagement {
+    private LinkedList<Entry> pausensituationen;
     private LinkedList<String> rückrufeListe;
     private int zahlAnrufe = 0;
     private LinkedList<String> reasonString;
@@ -17,14 +17,14 @@ public class Eintragsverwaltung {
     private File backupFolder = new File(System.getProperty("user.home") + File.separator + "/documents" + File.separator + "/Breaktool");
     private File backup = new File(backupFolder.getAbsolutePath(), "BreaktoolExport.ser");
 
-    public Eintragsverwaltung() {
+    public Entrymanagement() {
         this(new LinkedList<>(), new LinkedList<>(), 0, new LinkedList<>());
     }
 
-    public Eintragsverwaltung(LinkedList<Eintrag> pausensituationen,
-                              LinkedList<String> rückrufeListe,
-                              int zahlAnrufe,
-                              LinkedList<String> reasonString) {
+    public Entrymanagement(LinkedList<Entry> pausensituationen,
+                           LinkedList<String> rückrufeListe,
+                           int zahlAnrufe,
+                           LinkedList<String> reasonString) {
 
         this.pausensituationen = pausensituationen;
         this.rückrufeListe = rückrufeListe;
@@ -33,11 +33,11 @@ public class Eintragsverwaltung {
 
     }
 
-    public LinkedList<Eintrag> getPausensituationen() {
+    public LinkedList<Entry> getPausensituationen() {
         return pausensituationen;
     }
 
-    public void setPausensituationen(LinkedList<Eintrag> pausensituationen) {
+    public void setPausensituationen(LinkedList<Entry> pausensituationen) {
         this.pausensituationen = pausensituationen;
     }
 
@@ -65,7 +65,7 @@ public class Eintragsverwaltung {
         this.reasonString = reasonString;
     }
 
-    public void addReasonCode(Eintrag e) {
+    public void addReasonCode(Entry e) {
         pausensituationen.add(e);
     }
 
@@ -100,7 +100,7 @@ public class Eintragsverwaltung {
         if (backup.exists()) {
             try (ObjectInputStream t = new ObjectInputStream(new FileInputStream(backup))) {
                 t.readObject();
-                pausensituationen = (LinkedList<Eintrag>) t.readObject();
+                pausensituationen = (LinkedList<Entry>) t.readObject();
                 rückrufeListe = (LinkedList<String>) t.readObject();
                 zahlAnrufe = t.readInt();
                 reasonString = (LinkedList<String>) t.readObject();
@@ -131,7 +131,7 @@ public class Eintragsverwaltung {
                 t.write(" Keine\n\n".getBytes());
             }else{
                 t.write("\n".getBytes());
-                for (Eintrag e : pausensituationen) {
+                for (Entry e : pausensituationen) {
                     t.write(e.toString().getBytes());
                 }
             }
@@ -170,7 +170,7 @@ public class Eintragsverwaltung {
                 ausgabe += ("Keine\n\n");
             }else{
                 ausgabe+="\n";
-                for (Eintrag e : pausensituationen) {
+                for (Entry e : pausensituationen) {
                     ausgabe += e.toString();
                 }
             }

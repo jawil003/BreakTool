@@ -16,7 +16,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
-import mainApp.Hilfsklassen.Eintrag;
+import mainApp.toolClasses.Entry;
 
 class TimerView {
     private Button ende;
@@ -25,12 +25,12 @@ class TimerView {
     private int seconds = 0;
 
     private Label display = new Label(String.format("%02d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, seconds % 60));
-    private Eintrag eintrag;
+    private Entry entry;
 
-    TimerView(Stage stage, Eintrag eintrag, BorderPane pane, MainGui mainGui, Node centerPane) {
-        this.eintrag = eintrag;
+    TimerView(Stage stage, Entry entry, BorderPane pane, MainGui mainGui, Node centerPane) {
+        this.entry = entry;
         n = pane.getTop();
-        //Text beschreibung = new Text(eintrag.getZustand()+": "+eintrag.getNachricht());
+        //Text beschreibung = new Text(entry.getZustand()+": "+entry.getNachricht());
         //beschreibung.setStyle("-fx-font-weight: regular");
         //HBox box = new HBox(beschreibung);
         //box.setAlignment(Pos.CENTER);
@@ -52,8 +52,8 @@ class TimerView {
             pane.setCenter(centerPane);
             stage.show();
             //stage.setTitle("Pausenprogramm");
-            eintrag.setEndzeit();
-           MainGui.getVerwaltung().getPausensituationen().add(eintrag);
+            entry.setEndzeit();
+            MainGui.getVerwaltung().getPausensituationen().add(entry);
             MainGui.getVerwaltung().sichern();
             mainGui.getStage().close();
             mainGui.refreshToolTip();
@@ -75,7 +75,7 @@ class TimerView {
         VBox box = new VBox();
         box.setSpacing(10.0);
         Tooltip t = new Tooltip();
-        t.setText("So lange sind Sie schon im Zustand:\n" + eintrag.getNachricht() + " (" + eintrag.getZustand() + ")");
+        t.setText("So lange sind Sie schon im Zustand:\n" + entry.getNachricht() + " (" + entry.getZustand() + ")");
         t.setTextAlignment(TextAlignment.CENTER);
         display.setTooltip(t);
         box.setAlignment(Pos.CENTER);

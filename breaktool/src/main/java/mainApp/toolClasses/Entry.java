@@ -1,9 +1,9 @@
-package mainApp.Hilfsklassen;
+package mainApp.toolClasses;
 
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class Eintrag implements Serializable {
+public class Entry implements Serializable {
     /**
      *
      */
@@ -13,11 +13,11 @@ public class Eintrag implements Serializable {
     private String zustand;
     private String nachricht;
 
-    public Eintrag() {
+    public Entry() {
         this("", "");
     }
 
-    public Eintrag(String zustand, String nachricht) {
+    public Entry(String zustand, String nachricht) {
         this.anfangszeit = Calendar.getInstance();
         this.endzeit = null;
         this.zustand = zustand;
@@ -47,7 +47,7 @@ public class Eintrag implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Eintrag other = (Eintrag) obj;
+        Entry other = (Entry) obj;
         if (anfangszeit == null) {
             if (other.anfangszeit != null)
                 return false;

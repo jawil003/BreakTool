@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import mainApp.Hilfsklassen.Eintrag;
+import mainApp.toolClasses.Entry;
 
 public class ReasoncodeView {
     Button ok;
@@ -42,24 +42,24 @@ public class ReasoncodeView {
             @Override
             public void handle(ActionEvent event) {
                 if (b.getSelectionModel().getSelectedItem().toString().equals("Emails lesen")) {
-                    Eintrag eintrag = new Eintrag("Qualifikation", "Emails lesen");
-                    new TimerView(stage, eintrag, pane, mainGui, pane.getCenter());
+                    Entry entry = new Entry("Qualifikation", "Emails lesen");
+                    new TimerView(stage, entry, pane, mainGui, pane.getCenter());
 
                 } else if (b.getSelectionModel().getSelectedItem().toString().equals("Frage an SuSa")) {
-                    Eintrag eintrag = new Eintrag("Qualifikation", "Frage SuSa");
-                    new TimerView(stage, eintrag, pane, mainGui, pane.getCenter());
+                    Entry entry = new Entry("Qualifikation", "Frage SuSa");
+                    new TimerView(stage, entry, pane, mainGui, pane.getCenter());
 
                 } else if (b.getSelectionModel().getSelectedItem().toString().equals("Frage an Teamleiter")) {
-                    Eintrag eintrag = new Eintrag("Qualifikation", "Frage Teamleiter");
-                    new TimerView(stage, eintrag, pane, mainGui, pane.getCenter());
+                    Entry entry = new Entry("Qualifikation", "Frage Teamleiter");
+                    new TimerView(stage, entry, pane, mainGui, pane.getCenter());
 
                 } else if (b.getSelectionModel().getSelectedItem().toString().equals("Coaching Gespräch")) {
-                    Eintrag eintrag = new Eintrag("Qualifikation", "Besprechung Coaching");
-                    new TimerView(stage, eintrag, pane, mainGui, pane.getCenter());
+                    Entry entry = new Entry("Qualifikation", "Besprechung Coaching");
+                    new TimerView(stage, entry, pane, mainGui, pane.getCenter());
 
                 } else if (b.getSelectionModel().getSelectedItem().toString().equals("Teamleiterbesprechung")) {
-                    Eintrag eintrag = new Eintrag("Qualifikation", "Teamleiterbesprechung");
-                    new TimerView(stage, eintrag, pane, mainGui, pane.getCenter());
+                    Entry entry = new Entry("Qualifikation", "Teamleiterbesprechung");
+                    new TimerView(stage, entry, pane, mainGui, pane.getCenter());
 
                 } else if (b.getSelectionModel().getSelectedItem().toString().equals("Andere")) {
                     Node centerPane = pane.getCenter();
@@ -98,8 +98,8 @@ public class ReasoncodeView {
                                 nachricht = nachrichtFiled.getText();
                             }
                             if (!zustand.equals("") & !nachricht.equals("")) {
-                                Eintrag eintrag = new Eintrag(zustand, nachricht);
-                                new TimerView(stage, eintrag, pane, mainGui, centerPane);
+                                Entry entry = new Entry(zustand, nachricht);
+                                new TimerView(stage, entry, pane, mainGui, centerPane);
                             }
 
 
@@ -125,7 +125,7 @@ public class ReasoncodeView {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Eintrag eintrag = new Eintrag("Qualifikation", "Emails lesen");
+				Entry eintrag = new Entry("Qualifikation", "Emails lesen");
 				new TimerView(stage, backup, eintrag);
 				
 			}
@@ -135,7 +135,7 @@ public class ReasoncodeView {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Eintrag eintrag = new Eintrag("Qualifikation", "Frage SuSa");
+				Entry eintrag = new Entry("Qualifikation", "Frage SuSa");
 				new TimerView(stage, backup, eintrag);
 				
 			}
@@ -145,7 +145,7 @@ public class ReasoncodeView {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Eintrag eintrag = new Eintrag("Qualifikation", "Frage Teamleiter");
+				Entry eintrag = new Entry("Qualifikation", "Frage Teamleiter");
 				new TimerView(stage, backup, eintrag);
 				
 			}
@@ -155,7 +155,7 @@ public class ReasoncodeView {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Eintrag eintrag = new Eintrag("Qualifikation", "Besprechung Coaching");
+				Entry eintrag = new Entry("Qualifikation", "Besprechung Coaching");
 				new TimerView(stage, backup, eintrag);
 				
 			}
@@ -165,7 +165,7 @@ public class ReasoncodeView {
 
 			@Override
 			public void handle(ActionEvent event) {
-				Eintrag eintrag = new Eintrag("Qualifikation", "Teamleiterbesprechung");
+				Entry eintrag = new Entry("Qualifikation", "Teamleiterbesprechung");
 				new TimerView(stage, backup, eintrag);
 				
 			}

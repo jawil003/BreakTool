@@ -12,10 +12,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import mainApp.Hilfsklassen.Eintragsverwaltung;
-import mainApp.Hilfsklassen.FileWebOpener;
-import mainApp.Hilfsklassen.Kalender;
-import mainApp.Hilfsklassen.StringEncoder;
+import mainApp.toolClasses.Calendar;
+import mainApp.toolClasses.Entrymanagement;
+import mainApp.toolClasses.FileWebOpener;
+import mainApp.toolClasses.StringEncoder;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -29,7 +29,6 @@ import java.awt.event.MouseEvent;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Calendar;
 
 
 public class MainGui extends Application {
@@ -38,7 +37,7 @@ public class MainGui extends Application {
     private static SystemTray tray; // the Systemtray we put the Icons in
     private static TrayIcon trayIconProgramm; //the main trayIconProgramm (a cup of whatever: TrayIconProgramm.png)
     private static TrayIcon trayIconCalls; //the other trayIconProgramm (a handset: TrayIconCalls.png)
-    private static Eintragsverwaltung verwaltung = new Eintragsverwaltung(); // this is where all data is stores e.g Einträge
+    private static Entrymanagement verwaltung = new Entrymanagement(); // this is where all data is stores e.g Einträge
     private BorderPane mainpane = new BorderPane(); //mainpane of the stage
     private File backupFolder = new File(System.getProperty("user.home") + File.separator + "documents" + File.separator + "Breaktool"); //the location where all exportable files and the serialization is stored
     private File backup = new File(backupFolder.getAbsolutePath(), "BreaktoolExport.ser"); // the file where the serialization is in
@@ -82,11 +81,11 @@ public class MainGui extends Application {
         MainGui.trayIconCalls = trayIconCalls;
     }
 
-    public static Eintragsverwaltung getVerwaltung() {
+    public static Entrymanagement getVerwaltung() {
         return verwaltung;
     }
 
-    public static void setVerwaltung(Eintragsverwaltung verwaltung) {
+    public static void setVerwaltung(Entrymanagement verwaltung) {
         MainGui.verwaltung = verwaltung;
     }
 
@@ -395,8 +394,8 @@ public class MainGui extends Application {
                 verwaltung.restore();
                 FileChooser fc = new FileChooser();
                 fc.setTitle("Wählen sie einen Speicherort aus");
-                Calendar s1 = Calendar.getInstance();
-                fc.setInitialFileName("Terminbericht vom " + Kalender.getCurrentDate());
+                java.util.Calendar s1 = java.util.Calendar.getInstance();
+                fc.setInitialFileName("Terminbericht vom " + Calendar.getCurrentDate());
                 try {
                     File file = fc.showSaveDialog(stage);
                     if (file != null)
@@ -452,7 +451,7 @@ public class MainGui extends Application {
                 }
                 Desktop desktop = Desktop.getDesktop();
                 try {
-                    desktop.mail(new URI("mailto:?subject=Terminbericht" + StringEncoder.urlEncode(" vom " + Kalender.getCurrentDate()) + "&body=" + StringEncoder.urlEncode(verwaltung.toString())));
+                    desktop.mail(new URI("mailto:?subject=Terminbericht" + StringEncoder.urlEncode(" vom " + Calendar.getCurrentDate()) + "&body=" + StringEncoder.urlEncode(verwaltung.toString())));
                 } catch (IOException | URISyntaxException e1) {
                     e1.printStackTrace();
                 }
@@ -1326,7 +1325,7 @@ public class MainGui extends Application {
 
         if (backup.exists()) {          //Restore changes
             try {
-                if (!new ObjectInputStream(new FileInputStream(backup)).readObject().equals(Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "." + Calendar.getInstance().get(Calendar.MONTH) + "." + Calendar.getInstance().get(Calendar.YEAR))) {
+                if (!new ObjectInputStream(new FileInputStream(backup)).readObject().equals(java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_MONTH) + "." + java.util.Calendar.getInstance().get(java.util.Calendar.MONTH) + "." + java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))) {
                     backup.delete();
                 } else {
                     verwaltung.restore();
