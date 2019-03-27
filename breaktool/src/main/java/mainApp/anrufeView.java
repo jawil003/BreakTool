@@ -1,7 +1,5 @@
 package mainApp;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,50 +7,39 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-public class anrufeView {
-    TextField reasonField;
-    Label begründung;
-    Button hinzufügen;
-    MainGui mainGui;
+class anrufeView {
+    private TextField reasonField;
+    private Button hinzufügen;
 
-    public anrufeView(Stage stage, BorderPane pane, MainGui mainGui) {
-        this.mainGui = mainGui;
+    anrufeView(Stage stage, BorderPane pane) {
         pane.setCenter(createView());
         stage.show();
         //Label();
 
-        hinzufügen.setOnAction(new EventHandler<ActionEvent>() {
-    @Override
-    public void handle(ActionEvent event) {
-        if(!MainGui.getVerwaltung().getReasonString().contains(reasonField.getText()) & !reasonField.getText().equals("")){
-            MainGui.getVerwaltung().getReasonString().add(reasonField.getText() + ".\n");
-        }else{
-            return;
-        }
-        reasonField.setText("");
-        reasonField.requestFocus();
-        MainGui.getVerwaltung().sichern();
-        MultiWindowsHandler.getOpenStage().close();
-        MultiWindowsHandler.remove();
-    }
-});
-        reasonField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.ENTER)) {
-                    hinzufügen.fire();
-                }
-
-
+        hinzufügen.setOnAction(event -> {
+            if (!MainGui.getVerwaltung().getReasonString().contains(reasonField.getText()) & !reasonField.getText().equals("")) {
+                MainGui.getVerwaltung().getReasonString().add(reasonField.getText() + ".\n");
+            } else {
+                return;
             }
+            reasonField.setText("");
+            reasonField.requestFocus();
+            MainGui.getVerwaltung().sichern();
+            MultiWindowsHandler.getOpenStage().close();
+            MultiWindowsHandler.remove();
+        });
+        reasonField.setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                hinzufügen.fire();
+            }
+
+
         });
     }
 
@@ -62,7 +49,7 @@ public class anrufeView {
         VBox mainBox = new VBox();
         box2.setSpacing(10.0);
         box2.setAlignment(Pos.CENTER);
-        begründung= new Label("Begrundung:");
+        Label begründung = new Label("Begrundung:");
         hinzufügen = new Button("Hinzufügen");
         mainBox.setSpacing(10.0);
         mainBox.setAlignment(Pos.CENTER);
@@ -77,15 +64,6 @@ public class anrufeView {
         return mainBox;
 
     }
-
-    public TextField getReasonField() {
-        return reasonField;
-    }
-
-    public void setReasonField(TextField reasonField) {
-        this.reasonField = reasonField;
-    }
-
 
 
 }

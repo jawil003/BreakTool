@@ -1308,7 +1308,7 @@ public class MainGui extends Application {
         stage.setScene(new Scene(mainpane, 330, 150));
         switch (name) {
             case "anrufeView":
-                new anrufeView(stage, mainpane, this);
+                new anrufeView(stage, mainpane);
                 break;
             case "reasonCodeView":
                 new ReasoncodeView(stage, mainpane, this);
@@ -1358,7 +1358,7 @@ public class MainGui extends Application {
         mainStage.setResizable(false);
         MultiWindowsHandler.add();
         MultiWindowsHandler.setStage(mainStage);
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("ProgrammIcons/ProgrammIcon.png")));
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/ProgrammIcon.png")));
         stage.setTitle("BreakTool v.1.4.1");
 
 
