@@ -18,6 +18,7 @@ import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import mainApp.toolClasses.Entry;
 
+@SuppressWarnings("ALL")
 class TimerView {
     private Button ende;
     private Node n;

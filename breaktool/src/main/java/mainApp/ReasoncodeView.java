@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import mainApp.toolClasses.Entry;
 
+@SuppressWarnings("ALL")
 public class ReasoncodeView {
     Button ok;
     ComboBox<String> b;

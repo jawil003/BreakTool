@@ -31,6 +31,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 
+@SuppressWarnings("ALL")
 public class MainGui extends Application {
     private static boolean trayisCreated = false; //is true if a systemtray is created
     private static String name = "kein";
@@ -1042,40 +1043,28 @@ public class MainGui extends Application {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         FileWebOpener.openLink("https://aspa.telekom.de/cgi-bin-mp/aspa/cgidb/aspa/index.hto");
-                    } catch (URISyntaxException e1) {
-                        e1.printStackTrace();
-                    } catch (IOException e1) {
+                    } catch (URISyntaxException | IOException e1) {
                         e1.printStackTrace();
                     }
                 }
             });
 
-            retourenItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        FileWebOpener.openLink("https://retoure.telekom-dienste.de/miete/rent/service");
-                    } catch (URISyntaxException e1) {
-                        e1.printStackTrace();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+            retourenItem.addActionListener(e -> {
+                try {
+                    FileWebOpener.openLink("https://retoure.telekom-dienste.de/miete/rent/service");
+                } catch (URISyntaxException | IOException e1) {
+                    e1.printStackTrace();
                 }
             });
 
-            testMailItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        FileWebOpener.openLink("https://accounts.login.idm.telekom.com/idmip?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.return_to=https%3A%2F%2Ftipi.api.t-online.de%2Fsrp-auth%2FoneIdm%2Fverify%3FreturnToUrl%3Dhttp%3A%2F%2Fwww.t-online.de%2F-%2Fid_62530878%2Ftid_tsr-landingpage-popup%2Findex&openid.realm=https%3A%2F%2Ftipi.api.t-online.de&openid.assoc_handle=Sba296ffc-2ef5-4f7a-bae4-e9fb5a5da428&openid.mode=checkid_setup&openid.ns.ext1=http%3A%2F%2Fopenid.net%2Fsrv%2Fax%2F1.0&openid.ext1.mode=fetch_request&openid.ext1.type.attr1=urn%3Atelekom.com%3Aall&openid.ext1.required=attr1&openid.ns.ext2=http%3A%2F%2Fidm.telekom.com%2Fopenid%2Foauth2%2F1.0&openid.ext2.client_id=10LIVESAM30000004901PORTAL00000000000000&openid.ext2.scopes=W3sic2NvcGUiOiJzcGljYSJ9XQ%3D%3D&openid.ns.ext3=http%3A%2F%2Fidm.telekom.com%2Fopenid%2Fext%2F2.0&openid.ext3.logout_endpoint=https%3A%2F%2Ftipi.api.t-online.de%2Fsrp-auth%2FoneIdm%2Flogout&openid.ns.ext4=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fui%2F1.0&openid.ext4.mode=popup");
-                    } catch (URISyntaxException e1) {
-                        e1.printStackTrace();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-
-
+            testMailItem.addActionListener(e -> {
+                try {
+                    FileWebOpener.openLink("https://accounts.login.idm.telekom.com/idmip?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.return_to=https%3A%2F%2Ftipi.api.t-online.de%2Fsrp-auth%2FoneIdm%2Fverify%3FreturnToUrl%3Dhttp%3A%2F%2Fwww.t-online.de%2F-%2Fid_62530878%2Ftid_tsr-landingpage-popup%2Findex&openid.realm=https%3A%2F%2Ftipi.api.t-online.de&openid.assoc_handle=Sba296ffc-2ef5-4f7a-bae4-e9fb5a5da428&openid.mode=checkid_setup&openid.ns.ext1=http%3A%2F%2Fopenid.net%2Fsrv%2Fax%2F1.0&openid.ext1.mode=fetch_request&openid.ext1.type.attr1=urn%3Atelekom.com%3Aall&openid.ext1.required=attr1&openid.ns.ext2=http%3A%2F%2Fidm.telekom.com%2Fopenid%2Foauth2%2F1.0&openid.ext2.client_id=10LIVESAM30000004901PORTAL00000000000000&openid.ext2.scopes=W3sic2NvcGUiOiJzcGljYSJ9XQ%3D%3D&openid.ns.ext3=http%3A%2F%2Fidm.telekom.com%2Fopenid%2Fext%2F2.0&openid.ext3.logout_endpoint=https%3A%2F%2Ftipi.api.t-online.de%2Fsrp-auth%2FoneIdm%2Flogout&openid.ns.ext4=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fui%2F1.0&openid.ext4.mode=popup");
+                } catch (URISyntaxException | IOException e1) {
+                    e1.printStackTrace();
                 }
+
+
             });
 
 
@@ -1385,10 +1374,6 @@ public class MainGui extends Application {
 
     }
 
-    public boolean isShouldBeHidden() {
-        return shouldBeHidden;
-    }
-
     public void setShouldBeHidden(boolean shouldBeHidden) {
         this.shouldBeHidden = shouldBeHidden;
     }
@@ -1411,26 +1396,6 @@ public class MainGui extends Application {
 
     public BorderPane getMainpane() {
         return mainpane;
-    }
-
-    public void setMainpane(BorderPane mainpane) {
-        this.mainpane = mainpane;
-    }
-
-    public File getBackupFolder() {
-        return backupFolder;
-    }
-
-    public void setBackupFolder(File backupFolder) {
-        this.backupFolder = backupFolder;
-    }
-
-    public File getBackup() {
-        return backup;
-    }
-
-    public MainGui getMainGui() {
-        return mainGui;
     }
 
     Stage getStage() {

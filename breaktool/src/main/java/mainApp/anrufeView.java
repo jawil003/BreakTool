@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+@SuppressWarnings("ALL")
 class anrufeView {
     private TextField reasonField;
     private Button hinzufügen;

@@ -13,10 +13,6 @@ public class Entry implements Serializable {
     private String zustand;
     private String nachricht;
 
-    public Entry() {
-        this("", "");
-    }
-
     public Entry(String zustand, String nachricht) {
         this.anfangszeit = Calendar.getInstance();
         this.endzeit = null;
@@ -24,12 +20,12 @@ public class Entry implements Serializable {
         this.nachricht = nachricht;
     }
 
-    public void setEndzeit() {
+    public final void setEndzeit() {
         this.endzeit = Calendar.getInstance();
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((anfangszeit == null) ? 0 : anfangszeit.hashCode());
@@ -40,7 +36,7 @@ public class Entry implements Serializable {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
@@ -64,43 +60,20 @@ public class Entry implements Serializable {
         } else if (!nachricht.equals(other.nachricht))
             return false;
         if (zustand == null) {
-            if (other.zustand != null)
-                return false;
-        } else if (!zustand.equals(other.zustand))
-            return false;
-        return true;
+            return other.zustand == null;
+        } else return zustand.equals(other.zustand);
     }
 
-    public Calendar getAnfangszeit() {
-        return anfangszeit;
-    }
-
-    public void setAnfangszeit(Calendar anfangszeit) {
-        this.anfangszeit = anfangszeit;
-    }
-
-    public String getZustand() {
+    public final String getZustand() {
         return zustand;
     }
 
-    public void setZustand(String zustand) {
-        this.zustand = zustand;
-    }
-
-    public String getNachricht() {
+    public final String getNachricht() {
         return nachricht;
     }
 
-    public void setNachricht(String nachricht) {
-        this.nachricht = nachricht;
-    }
-
-    public Calendar getEndzeit() {
-        return endzeit;
-    }
-
     @Override
-    public String toString() {
+    public final String toString() {
 
         return String.format("%02d", anfangszeit.get(Calendar.HOUR_OF_DAY)) + ":" + String.format("%02d", anfangszeit.get(Calendar.MINUTE))
                 + ":" + String.format("%02d", anfangszeit.get(Calendar.SECOND)) + " Uhr" + " - " + String.format("%02d", endzeit.get(Calendar.HOUR_OF_DAY)) + ":" + String.format("%02d", endzeit.get(Calendar.MINUTE))
@@ -108,5 +81,13 @@ public class Entry implements Serializable {
                 + zustand + "\n"
                 + nachricht + "\n \n";
 
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
+        throw new java.io.NotSerializableException("mainApp.toolClasses.Entry");
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
+        throw new java.io.NotSerializableException("mainApp.toolClasses.Entry");
     }
 }

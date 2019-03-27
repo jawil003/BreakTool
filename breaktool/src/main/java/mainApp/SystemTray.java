@@ -5,19 +5,21 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.LinkedList;
 
+@SuppressWarnings("ALL")
 public class SystemTray {
     private static java.awt.SystemTray systemTray;
     private static LinkedList<TrayIcon> trayIcons;
+
     public SystemTray(){
         if(systemTray==null)
-        systemTray = getInstance();
+            systemTray = getInstance();
 
         if(trayIcons==null)
             trayIcons = new LinkedList<>();
     }
 
     public static java.awt.SystemTray getInstance(){
-            return java.awt.SystemTray.getSystemTray();
+        return java.awt.SystemTray.getSystemTray();
     }
 
     public void addImageAsTrayIcon(String path) throws AWTException, IOException {
@@ -31,7 +33,6 @@ public class SystemTray {
     public void addMenutoTrayIcon(int positionInList){
         TrayIcon trayIcon = trayIcons.get(positionInList);
     }
-
 
 
 }
