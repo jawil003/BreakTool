@@ -30,6 +30,10 @@ import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/*import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.safari.SafariDriver;*/
+
 
 @SuppressWarnings("ALL")
 public class MainGui extends Application {
@@ -68,7 +72,7 @@ public class MainGui extends Application {
     }
 
     public static void refreshToolTip() {
-        trayIconProgramm.setToolTip("Breaktool v.1.4.1" +
+        trayIconProgramm.setToolTip("Breaktool v.1.5.0" +
                 "\nAnrufe: " + verwaltung.getZahlAnrufe() +
                 "\nRückrufe: " + verwaltung.getRückrufeListe().size() +
                 "\nReasoncodes: " + verwaltung.getPausensituationen().size());
@@ -1059,10 +1063,24 @@ public class MainGui extends Application {
 
             testMailItem.addActionListener(e -> {
                 try {
-                    FileWebOpener.openLink("https://accounts.login.idm.telekom.com/idmip?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.return_to=https%3A%2F%2Ftipi.api.t-online.de%2Fsrp-auth%2FoneIdm%2Fverify%3FreturnToUrl%3Dhttp%3A%2F%2Fwww.t-online.de%2F-%2Fid_62530878%2Ftid_tsr-landingpage-popup%2Findex&openid.realm=https%3A%2F%2Ftipi.api.t-online.de&openid.assoc_handle=Sba296ffc-2ef5-4f7a-bae4-e9fb5a5da428&openid.mode=checkid_setup&openid.ns.ext1=http%3A%2F%2Fopenid.net%2Fsrv%2Fax%2F1.0&openid.ext1.mode=fetch_request&openid.ext1.type.attr1=urn%3Atelekom.com%3Aall&openid.ext1.required=attr1&openid.ns.ext2=http%3A%2F%2Fidm.telekom.com%2Fopenid%2Foauth2%2F1.0&openid.ext2.client_id=10LIVESAM30000004901PORTAL00000000000000&openid.ext2.scopes=W3sic2NvcGUiOiJzcGljYSJ9XQ%3D%3D&openid.ns.ext3=http%3A%2F%2Fidm.telekom.com%2Fopenid%2Fext%2F2.0&openid.ext3.logout_endpoint=https%3A%2F%2Ftipi.api.t-online.de%2Fsrp-auth%2FoneIdm%2Flogout&openid.ns.ext4=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fui%2F1.0&openid.ext4.mode=popup");
-                } catch (URISyntaxException | IOException e1) {
+                    FileWebOpener.openLink("https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=2ahUKEwjU0t7c4aXhAhXFjKQKHRx_CsIQFjABegQIARAB&url=https%3A%2F%2Faccounts.login.idm.telekom.com%2Fidmip%3Fopenid.ns%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%26openid.claimed_id%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.identity%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.return_to%3Dhttps%253A%252F%252Ftipi.api.t-online.de%252Fsrp-auth%252FoneIdm%252Fverify%253FreturnToUrl%253Dhttps%253A%252F%252Femail.t-online.de%252Fem%26openid.realm%3Dhttps%253A%252F%252Ftipi.api.t-online.de%26openid.assoc_handle%3DS4d53c348-b3f2-49a9-b13e-65ade0af6da4%26openid.mode%3Dcheckid_setup%26openid.ns.ext1%3Dhttp%253A%252F%252Fopenid.net%252Fsrv%252Fax%252F1.0%26openid.ext1.mode%3Dfetch_request%26openid.ext1.type.attr1%3Durn%253Atelekom.com%253Aall%26openid.ext1.required%3Dattr1%26openid.ns.ext2%3Dhttp%253A%252F%252Fidm.telekom.com%252Fopenid%252Foauth2%252F1.0%26openid.ext2.client_id%3D10LIVESAM30000004901PORTAL00000000000000%26openid.ext2.scopes%3DW3sic2NvcGUiOiJzcGljYSJ9XQ%253D%253D%26openid.ns.ext3%3Dhttp%253A%252F%252Fidm.telekom.com%252Fopenid%252Fext%252F2.0%26openid.ext3.logout_endpoint%3Dhttps%253A%252F%252Ftipi.api.t-online.de%252Fsrp-auth%252FoneIdm%252Flogout%26openid.ns.ext4%3Dhttp%253A%252F%252Fspecs.openid.net%252Fextensions%252Fui%252F1.0%26openid.ext4.mode%3Dpopup&usg=AOvVaw0eL3znNpoGQ1Xpg46xagau");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            createApp(true, new Stage(), "userPasswortView");
+                        }
+                    });
+                } catch (URISyntaxException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
                     e1.printStackTrace();
                 }
+
+
+
+                    /*WebDriver driver = new InternetExplorerDriver();
+                    driver.get("https://accounts.login.idm.telekom.com/idmip?openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.return_to=https%3A%2F%2Ftipi.api.t-online.de%2Fsrp-auth%2FoneIdm%2Fverify%3FreturnToUrl%3Dhttp%3A%2F%2Fwww.t-online.de%2F-%2Fid_62530878%2Ftid_tsr-landingpage-popup%2Findex&openid.realm=https%3A%2F%2Ftipi.api.t-online.de&openid.assoc_handle=Sba296ffc-2ef5-4f7a-bae4-e9fb5a5da428&openid.mode=checkid_setup&openid.ns.ext1=http%3A%2F%2Fopenid.net%2Fsrv%2Fax%2F1.0&openid.ext1.mode=fetch_request&openid.ext1.type.attr1=urn%3Atelekom.com%3Aall&openid.ext1.required=attr1&openid.ns.ext2=http%3A%2F%2Fidm.telekom.com%2Fopenid%2Foauth2%2F1.0&openid.ext2.client_id=10LIVESAM30000004901PORTAL00000000000000&openid.ext2.scopes=W3sic2NvcGUiOiJzcGljYSJ9XQ%3D%3D&openid.ns.ext3=http%3A%2F%2Fidm.telekom.com%2Fopenid%2Fext%2F2.0&openid.ext3.logout_endpoint=https%3A%2F%2Ftipi.api.t-online.de%2Fsrp-auth%2FoneIdm%2Flogout&openid.ns.ext4=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fui%2F1.0&openid.ext4.mode=popup");
+                    */
 
 
             });
@@ -1305,6 +1323,9 @@ public class MainGui extends Application {
             case "rückrufeView":
                 new RückrufeView(stage, mainpane, this);
                 break;
+            case "userPasswortView":
+                new userPasswortView(stage, "testMail");
+                break;
         }
 
 
@@ -1348,7 +1369,7 @@ public class MainGui extends Application {
         MultiWindowsHandler.add();
         MultiWindowsHandler.setStage(mainStage);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/ProgrammIcon.png")));
-        stage.setTitle("BreakTool v.1.4.1");
+        stage.setTitle("BreakTool v.1.5.0");
 
 
         if (System.getProperty("os.name").startsWith("Windows")) {
