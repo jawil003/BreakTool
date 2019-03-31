@@ -1,6 +1,9 @@
 package mainApp.toolClasses;
 
+import org.apache.commons.io.IOUtils;
+
 import java.awt.*;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -114,6 +117,15 @@ public class FileWebOpener {
 
         }
         return "https://www.router-faq.de/?id=" + kind + "info&hw" + c + "=" + routerModel + "#" + routerModel;
+    }
+
+    public static File stream2file(InputStream in, String präfix, String suffix) throws IOException {
+        final File tempFile = File.createTempFile(präfix, suffix);
+        tempFile.deleteOnExit();
+        try (FileOutputStream out = new FileOutputStream(tempFile)) {
+            IOUtils.copy(in, out);
+        }
+        return tempFile;
     }
 
 }
