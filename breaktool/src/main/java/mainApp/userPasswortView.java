@@ -12,7 +12,7 @@ import java.awt.datatransfer.StringSelection;
 
 public class userPasswortView {
 
-    Stage stage = null;
+    private Stage stage = null;
     private boolean benutzerPressed = false;
     private boolean passwordPressed = false;
 
@@ -53,7 +53,22 @@ public class userPasswortView {
                     }
                 });
 
+            case "retourenschein":
+                benutzer.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection("Kundenservice"), null);
+                        setBenutzerPressed();
+                    }
+                });
 
+                passwort.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection("12345"), null);
+                        setPasswortPressed();
+                    }
+                });
         }
 
 
