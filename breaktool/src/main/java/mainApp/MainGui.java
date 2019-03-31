@@ -175,7 +175,23 @@ public class MainGui extends Application {
             MenuItem minimalLeistungenDetailsXL = new MenuItem("Magenta Zuhause XL");
 
             MenuItem magentaTVLeistungsübersicht = new MenuItem("Leistungsübersicht");
-            MenuItem magentaTVHDSender = new MenuItem("Senderliste");
+            Menu magentaTVHDSender = new Menu("Senderliste");
+
+            Menu magentaTVSender = new Menu("MagentaTV");
+
+            MenuItem magentaTVHDSenderMagentaTV = new MenuItem("Magenta TV");
+            MenuItem magentaTVHDSenderMagentaTVSat = new MenuItem("Magenta TV Sat");
+            MenuItem magentaTVHDSenderMagentaTVApp = new MenuItem("Magenta TV");
+            MenuItem magentaTVHDSenderMagentaTVMediatheken = new MenuItem("Magenta TV Mediatheken");
+
+            MenuItem startTV = new MenuItem("StartTV");
+
+            Menu EntertainTV = new Menu("Entertain");
+
+            MenuItem EntertainTVNormal = new MenuItem("Entertain");
+            MenuItem EntertainTVSat = new MenuItem("Entertain Sat");
+            MenuItem EntertainTVMediatheken = new MenuItem("Entertain Mediatheken");
+
 
             MenuItem öffnenItem = new MenuItem("Öffnen");
 
@@ -864,6 +880,59 @@ public class MainGui extends Application {
             zyxel5501.addActionListener(new routerFAQActionListener());
             zyxel6501.addActionListener(new routerFAQActionListener());
 
+            startTV.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("http://www.senderinfo.de/Entertain_Start_TV.pdf");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            EntertainTVNormal.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("http://www.senderinfo.de/Entertain_Senderliste.pdf");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+
+                }
+            });
+
+            EntertainTVSat.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("http://www.senderinfo.de/Entertain_Comfort_Sat_Senderliste.pdf");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            EntertainTVMediatheken.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("http://www.senderinfo.de/Entertain_Mediatheken.pdf");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
             telekomHilftEmail.addActionListener(e -> {
                 try {
                     FileWebOpener.openLink("https://www.telekom.de/hilfe/festnetz-internet-tv/e-mail");
@@ -927,8 +996,67 @@ public class MainGui extends Application {
 
             magentaTVLeistungsübersicht.addActionListener(e -> FileWebOpener.openFileAsJPGStream("/magenta/tv/MagentaTV_Leistungsübersicht.jpg"));
 
-            magentaTVHDSender.addActionListener(e -> FileWebOpener.openFileAsPDFStream("/magenta/tv/MagentaTV.pdf"));
+            magentaTVHDSender.addActionListener(e -> {
+                try {
+                    FileWebOpener.openLink("https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=2ahUKEwjdjMn10anhAhWEDOwKHRT4BOUQFjABegQIAxAB&url=https%3A%2F%2Fwww.telekom.de%2Fhilfe%2Ffestnetz-internet-tv%2Fmagentatv%2Ffunktionen%2Fsenderlisten-fernsehsender-magentatv&usg=AOvVaw0zSnQ0tzKZ-C9XXzLnJcDy");
+                } catch (URISyntaxException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            });
 
+            magentaTVHDSenderMagentaTV.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("http://www.senderinfo.de/MagentaTV.pdf");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            magentaTVHDSenderMagentaTVApp.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("http://www.senderinfo.de/MagentaTV_App.pdf");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            magentaTVHDSenderMagentaTVMediatheken.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("http://www.senderinfo.de/MagentaTV_Mediathek.pdf");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            magentaTVHDSenderMagentaTVSat.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("http://www.senderinfo.de/MagentaTV_Sat.pdf");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
 
             telekomHilftTelefon.addActionListener(e -> {
                 try {
@@ -1056,6 +1184,12 @@ public class MainGui extends Application {
             retourenItem.addActionListener(e -> {
                 try {
                     FileWebOpener.openLink("https://retoure.telekom-dienste.de/miete/rent/service");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            createApp(true, new Stage(), "retourenscheinView");
+                        }
+                    });
                 } catch (URISyntaxException | IOException e1) {
                     e1.printStackTrace();
                 }
@@ -1100,6 +1234,19 @@ public class MainGui extends Application {
             produkteItem.add(magentaTVItem);
             magentaTVItem.add(magentaTVLeistungsübersicht);
             magentaTVItem.add(magentaTVHDSender);
+            magentaTVHDSender.add(magentaTVSender);
+            magentaTVSender.add(magentaTVHDSenderMagentaTV);
+            magentaTVSender.add(magentaTVHDSenderMagentaTVSat);
+            magentaTVSender.add(magentaTVHDSenderMagentaTVApp);
+            magentaTVSender.add(magentaTVHDSenderMagentaTVMediatheken);
+            magentaTVHDSender.add(startTV);
+            magentaTVHDSender.add(EntertainTV);
+            EntertainTV.add(EntertainTVNormal);
+            EntertainTV.add(EntertainTVSat);
+            EntertainTV.add(EntertainTVMediatheken);
+            EntertainTV.add(EntertainTVNormal);
+            EntertainTV.add(EntertainTVSat);
+            EntertainTV.add(EntertainTVMediatheken);
             computerhilfeItem.add(coHiLeistungsübersichtItem);
             computerhilfeItem.add(coHiWeitereInfosItem);
             computerhilfeItem.add(coHiAGB);
@@ -1326,6 +1473,8 @@ public class MainGui extends Application {
             case "userPasswortView":
                 new userPasswortView(stage, "testMail");
                 break;
+            case "retourenscheinView":
+                new userPasswortView(stage, "retourenschein");
         }
 
 
