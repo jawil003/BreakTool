@@ -12,7 +12,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import mainApp.toolClasses.*;
+import mainApp.toolClasses.Calendar;
+import mainApp.toolClasses.Entrymanagement;
+import mainApp.toolClasses.FileWebOpener;
+import mainApp.toolClasses.StringEncoder;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -370,6 +373,8 @@ public class MainGui extends Application {
             MenuItem aspaItem = new MenuItem("ASPA");
             MenuItem retourenItem = new MenuItem("Retourenschein");
             MenuItem testMailItem = new MenuItem("Testmailaccount");
+
+            MenuItem settingsItem = new MenuItem("Einstellungen");
 
             ActionListener listener = e -> Platform.runLater(() -> {
                 if (MultiWindowsHandler.getSize() == 0) {
@@ -1193,7 +1198,7 @@ public class MainGui extends Application {
             });
 
             testMailItem.addActionListener(e -> {
-                /*try {
+                try {
                     FileWebOpener.openLink("https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=2ahUKEwjU0t7c4aXhAhXFjKQKHRx_CsIQFjABegQIARAB&url=https%3A%2F%2Faccounts.login.idm.telekom.com%2Fidmip%3Fopenid.ns%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%26openid.claimed_id%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.identity%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.return_to%3Dhttps%253A%252F%252Ftipi.api.t-online.de%252Fsrp-auth%252FoneIdm%252Fverify%253FreturnToUrl%253Dhttps%253A%252F%252Femail.t-online.de%252Fem%26openid.realm%3Dhttps%253A%252F%252Ftipi.api.t-online.de%26openid.assoc_handle%3DS4d53c348-b3f2-49a9-b13e-65ade0af6da4%26openid.mode%3Dcheckid_setup%26openid.ns.ext1%3Dhttp%253A%252F%252Fopenid.net%252Fsrv%252Fax%252F1.0%26openid.ext1.mode%3Dfetch_request%26openid.ext1.type.attr1%3Durn%253Atelekom.com%253Aall%26openid.ext1.required%3Dattr1%26openid.ns.ext2%3Dhttp%253A%252F%252Fidm.telekom.com%252Fopenid%252Foauth2%252F1.0%26openid.ext2.client_id%3D10LIVESAM30000004901PORTAL00000000000000%26openid.ext2.scopes%3DW3sic2NvcGUiOiJzcGljYSJ9XQ%253D%253D%26openid.ns.ext3%3Dhttp%253A%252F%252Fidm.telekom.com%252Fopenid%252Fext%252F2.0%26openid.ext3.logout_endpoint%3Dhttps%253A%252F%252Ftipi.api.t-online.de%252Fsrp-auth%252FoneIdm%252Flogout%26openid.ns.ext4%3Dhttp%253A%252F%252Fspecs.openid.net%252Fextensions%252Fui%252F1.0%26openid.ext4.mode%3Dpopup&usg=AOvVaw0eL3znNpoGQ1Xpg46xagau");
                     Platform.runLater(new Runnable() {
                         @Override
@@ -1205,21 +1210,33 @@ public class MainGui extends Application {
                     e1.printStackTrace();
                 } catch (IOException e1) {
                     e1.printStackTrace();
-                }*/
+                }
 
-                final HttpUrlConnection instance = HttpUrlConnection.getInstance();
+                /*final HttpUrlConnection instance = HttpUrlConnection.getInstance();
 
                 try {
                     instance.exportDriver();
                     instance.goToWebsite("https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&ved=2ahUKEwjU0t7c4aXhAhXFjKQKHRx_CsIQFjABegQIARAB&url=https%3A%2F%2Faccounts.login.idm.telekom.com%2Fidmip%3Fopenid.ns%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%26openid.claimed_id%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.identity%3Dhttp%253A%252F%252Fspecs.openid.net%252Fauth%252F2.0%252Fidentifier_select%26openid.return_to%3Dhttps%253A%252F%252Ftipi.api.t-online.de%252Fsrp-auth%252FoneIdm%252Fverify%253FreturnToUrl%253Dhttps%253A%252F%252Femail.t-online.de%252Fem%26openid.realm%3Dhttps%253A%252F%252Ftipi.api.t-online.de%26openid.assoc_handle%3DS4d53c348-b3f2-49a9-b13e-65ade0af6da4%26openid.mode%3Dcheckid_setup%26openid.ns.ext1%3Dhttp%253A%252F%252Fopenid.net%252Fsrv%252Fax%252F1.0%26openid.ext1.mode%3Dfetch_request%26openid.ext1.type.attr1%3Durn%253Atelekom.com%253Aall%26openid.ext1.required%3Dattr1%26openid.ns.ext2%3Dhttp%253A%252F%252Fidm.telekom.com%252Fopenid%252Foauth2%252F1.0%26openid.ext2.client_id%3D10LIVESAM30000004901PORTAL00000000000000%26openid.ext2.scopes%3DW3sic2NvcGUiOiJzcGljYSJ9XQ%253D%253D%26openid.ns.ext3%3Dhttp%253A%252F%252Fidm.telekom.com%252Fopenid%252Fext%252F2.0%26openid.ext3.logout_endpoint%3Dhttps%253A%252F%252Ftipi.api.t-online.de%252Fsrp-auth%252FoneIdm%252Flogout%26openid.ns.ext4%3Dhttp%253A%252F%252Fspecs.openid.net%252Fextensions%252Fui%252F1.0%26openid.ext4.mode%3Dpopup&usg=AOvVaw0eL3znNpoGQ1Xpg46xagau");
-                    instance.setUsernameAndPassword("team52@t-online.de", "YC2018$tudent!");
+                    instance.setUsernameAndPasswordXPath("team52@t-online.de", "YC2018$tudent!", 0);
                 } catch (IOException e1) {
                     e1.printStackTrace();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }*/
+
+
+            });
+
+            settingsItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    });
                 }
-
-
-
-
             });
 
 
@@ -1474,10 +1491,10 @@ public class MainGui extends Application {
                 new RückrufeView(stage, mainpane, this);
                 break;
             case "userPasswortView":
-                new userPasswortView(stage, "testMail");
+                new userPasswortView(stage, "team52@t-online.de", "YC2018$tudent!");
                 break;
             case "retourenscheinView":
-                new userPasswortView(stage, "retourenschein");
+                new userPasswortView(stage, "Kundenservice", "12345");
         }
 
 
@@ -1521,7 +1538,7 @@ public class MainGui extends Application {
         MultiWindowsHandler.add();
         MultiWindowsHandler.setStage(mainStage);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/ProgrammIcon.png")));
-        stage.setTitle("BreakTool v.1.5.0");
+        stage.setTitle("BreakTool v.1.6.0");
 
 
         if (System.getProperty("os.name").startsWith("Windows")) {

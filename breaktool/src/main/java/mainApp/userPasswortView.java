@@ -16,12 +16,12 @@ public class userPasswortView {
     private boolean benutzerPressed = false;
     private boolean passwordPressed = false;
 
-    public userPasswortView(Stage stage, String useCase) {
+    public userPasswortView(Stage stage, String benutzername, String passwort) {
         this.stage = stage;
-        create(stage, useCase);
+        create(stage, benutzername, passwort);
     }
 
-    private void create(Stage stage, String useCase) {
+    private void create(Stage stage, String benutzername, String passwortvalue) {
         VBox box = new VBox();
         box.setAlignment(Pos.CENTER);
         box.setSpacing(5.0);
@@ -35,12 +35,10 @@ public class userPasswortView {
         passwort.setPrefSize(benutzer.getWidth(), passwort.getHeight());
         stage.show();
 
-        switch (useCase) {
-            case "testMail":
                 benutzer.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection("team52@t-online.de"), null);
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(benutzername), null);
                         setBenutzerPressed();
                     }
                 });
@@ -48,28 +46,10 @@ public class userPasswortView {
                 passwort.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection("YC2018$tudent!"), null);
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(passwortvalue), null);
                         setPasswortPressed();
                     }
                 });
-
-            case "retourenschein":
-                benutzer.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection("Kundenservice"), null);
-                        setBenutzerPressed();
-                    }
-                });
-
-                passwort.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection("12345"), null);
-                        setPasswortPressed();
-                    }
-                });
-        }
 
 
     }

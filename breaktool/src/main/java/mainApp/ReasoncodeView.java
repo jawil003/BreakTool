@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -72,7 +71,7 @@ public class ReasoncodeView {
                     Label nachrichtLabel = new Label("Aktion:");
                     ComboBox<String> zustandField = new ComboBox();
                     zustandField.getItems().addAll("Qualifikation", "Sonstige Sekundärzeiten", "Pause", "Bildschirmerholzeit");
-                    TextField nachrichtFiled = new TextField();
+                    Label nachrichtFiled = new Label();
                     Button ok = new Button("OK");
                     Button abbrechen = new Button("Abbrechen");
                     Gpane.add(zustandLabel, 0, 0);

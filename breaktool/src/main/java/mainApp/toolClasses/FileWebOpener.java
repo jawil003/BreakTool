@@ -99,9 +99,6 @@ public class FileWebOpener {
                 case "FRITZ!Box":
                     routerModel="fbfb";
                     break;
-                case "FRITZ!Box 3020":
-                    routerModel="fbwlan3020";
-                    break;
                 case "FRITZ!Box 3030":
                     routerModel="fbwlan3030";
                     break;
@@ -111,6 +108,11 @@ public class FileWebOpener {
                     routerModel = "fbfonwlan7390";
                     break;
                 default:
+                    if (value.contains("FRITZ!Box 3")) {
+                        routerModel = "fbwlan" + value.substring(value.length() - 4, value.length());
+                    } else {
+
+                    }
                     routerModel = value.replaceAll("\\s+", "").toLowerCase().replace("fritz!box", "fb");
                     break;
             }
