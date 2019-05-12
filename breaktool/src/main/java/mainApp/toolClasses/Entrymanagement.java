@@ -78,7 +78,7 @@ public class Entrymanagement {
     }
 
     public void sichern() {
-        new File(System.getProperty("user.home") + File.separator + "/documents" + File.separator + "/Breaktool").mkdirs();
+        new File(System.getProperty("user.home") + File.separator + "documents" + File.separator + "Breaktool").mkdirs();
 
         try (ObjectOutputStream t = new ObjectOutputStream(new FileOutputStream(backup)); ObjectInputStream m = new ObjectInputStream(new FileInputStream(backup))) {
 
@@ -120,39 +120,39 @@ public class Entrymanagement {
 
     }
 
-    public void exportAlsTxt(OutputStream m) {
-        try (BufferedOutputStream t = new BufferedOutputStream(m)) {
+    public void exportAlsTxt(Writer m) {
+        try (BufferedWriter t = new BufferedWriter(m)) {
             // Calendar s = Calendar.getInstance();
             // t.write(("Terminbericht:
             // "+s.get(Calendar.DAY_OF_MONTH)+"."+s.get(Calendar.MONTH)+"."+s.get(Calendar.YEAR)+":\n
             // \n").getBytes());
-            t.write("Reasoncode(s):".getBytes());
+            t.write("Reasoncode(s):");
             if(MainGui.getVerwaltung().getPausensituationen().size()==0){
-                t.write(" Keine\n\n".getBytes());
+                t.write(" Keine\n\n");
             }else{
-                t.write("\n".getBytes());
+                t.write("\n");
                 for (Entry e : pausensituationen) {
-                    t.write(e.toString().getBytes());
+                    t.write(e.toString());
                 }
             }
 
-            t.write("Rückruf(e): ".getBytes());
+            t.write("Rückruf(e): ");
             if (MainGui.getVerwaltung().getRückrufeListe().size()==0){
-                t.write("Keine\n".getBytes());
+                t.write("Keine\n");
             }else{
-                t.write("\n".getBytes());
+                t.write("\n");
                 for (String e : rückrufeListe) {
-                    t.write((e + "\n").getBytes());
+                    t.write((e + "\n"));
                 }
             }
 
-            t.write(("\nAnruf(e): " + zahlAnrufe ).getBytes());
+            t.write(("\nAnruf(e): " + zahlAnrufe));
             if (reasonString.size()==0){
 
             }else{
-                t.write(", weil:\n".getBytes());
+                t.write(", weil:\n");
                 for (String e : reasonString) {
-                    t.write((e).getBytes());
+                    t.write((e));
                 }
             }
         } catch (IOException e) {
@@ -204,8 +204,10 @@ public class Entrymanagement {
         Desktop desktop = Desktop.getDesktop();
         File file = new File(System.getProperty("user.home") + File.separator + "documents" + File.separator + "Breaktool"+ File.separator +"BreakToolExport.txt");
         try {
-            exportAlsTxt(new FileOutputStream(file));
+            exportAlsTxt(new FileWriter(file));
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         try {

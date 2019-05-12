@@ -2,6 +2,7 @@ package mainApp;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -15,6 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import mainApp.toolClasses.Entry;
 
+import java.io.File;
+import java.io.IOException;
+
 @SuppressWarnings("ALL")
 public class ReasoncodeView {
     Button ok;
@@ -27,7 +31,7 @@ public class ReasoncodeView {
         backup = stage.getScene();
         ok = new Button("OK");
         b = new ComboBox<>();
-        b.getItems().addAll("Bitte auswählen:", "Emails lesen", "Frage an SuSa", "Frage an Teamleiter", "Coaching Gespräch", "Teamleiterbesprechung", "Andere");
+        b.getItems().addAll("Bitte auswählen:", "Emails lesen", "Frage an SuSa", "Frage von einem Kollegen", "Frage an Teamleiter", "Coaching Gespräch", "Teamleiterbesprechung", "Andere");
         b.getSelectionModel().selectFirst();
         HBox box2 = new HBox();
         box2.getChildren().addAll(b, ok);
@@ -48,6 +52,16 @@ public class ReasoncodeView {
                 } else if (b.getSelectionModel().getSelectedItem().toString().equals("Frage an SuSa")) {
                     Entry entry = new Entry("Qualifikation", "Frage SuSa");
                     new TimerView(stage, entry, pane, mainGui, pane.getCenter());
+
+                } else if (b.getSelectionModel().getSelectedItem().toString().equals("Frage von einem Kollegen")) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(new File("breaktool/Fxml/SusaInformationView.fxml").toURI().toURL());
+                        SusaInformationView s = new SusaInformationView(stage, pane, mainGui, pane.getCenter(), loader);
+                        s.init();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 } else if (b.getSelectionModel().getSelectedItem().toString().equals("Frage an Teamleiter")) {
                     Entry entry = new Entry("Qualifikation", "Frage Teamleiter");

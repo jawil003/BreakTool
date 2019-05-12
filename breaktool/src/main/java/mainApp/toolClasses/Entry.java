@@ -73,7 +73,7 @@ public class Entry implements Serializable {
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
 
         return String.format("%02d", anfangszeit.get(Calendar.HOUR_OF_DAY)) + ":" + String.format("%02d", anfangszeit.get(Calendar.MINUTE))
                 + ":" + String.format("%02d", anfangszeit.get(Calendar.SECOND)) + " Uhr" + " - " + String.format("%02d", endzeit.get(Calendar.HOUR_OF_DAY)) + ":" + String.format("%02d", endzeit.get(Calendar.MINUTE))
@@ -83,11 +83,7 @@ public class Entry implements Serializable {
 
     }
 
-    private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
-        throw new java.io.NotSerializableException("mainApp.toolClasses.Entry");
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws java.io.IOException {
-        throw new java.io.NotSerializableException("mainApp.toolClasses.Entry");
+    public void addNachricht(String nachricht) {
+        this.nachricht += nachricht;
     }
 }

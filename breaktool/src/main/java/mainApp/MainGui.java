@@ -21,12 +21,14 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.SystemTray;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -72,7 +74,7 @@ public class MainGui extends Application {
     }
 
     public static void refreshToolTip() {
-        trayIconProgramm.setToolTip("Breaktool v.1.5.0" +
+        trayIconProgramm.setToolTip("Breaktool v.1.6.2" +
                 "\nAnrufe: " + verwaltung.getZahlAnrufe() +
                 "\nRückrufe: " + verwaltung.getRückrufeListe().size() +
                 "\nReasoncodes: " + verwaltung.getPausensituationen().size());
@@ -100,6 +102,7 @@ public class MainGui extends Application {
 
         shouldBeHidden = true;
         //}
+
         createApp(trayisCreated, primaryStage, name);
         trayisCreated = true;
 
@@ -201,6 +204,7 @@ public class MainGui extends Application {
             MenuItem irrpItem = new MenuItem("IRRP Client");
             MenuItem onlineStatistikenItem = new MenuItem("Online Statistiken");
             MenuItem svtItem = new MenuItem("SVT");
+            MenuItem kiToolItem = new MenuItem("KI-Tool");
 
             Menu routerFAQMenu = new Menu("RouterFAQ");
             Menu routerFAQFritzBoxItem = new Menu("FRITZ!Box Übersicht");
@@ -361,7 +365,11 @@ public class MainGui extends Application {
             MenuItem telekomHilftAGB = new MenuItem("Telekom AGB");
 
 
-            MenuItem winsItem = new MenuItem("WINS");
+            Menu winsMennu = new Menu("WINS");
+            MenuItem telefoneItem = new MenuItem("Telefone");
+            MenuItem mrItem = new MenuItem("Media Receiver");
+            MenuItem routerItem = new MenuItem("Router");
+            MenuItem fehlercodesItem = new MenuItem("Fehlercodes");
 
             Menu google = new Menu("Google");
             MenuItem googleSearch = new MenuItem("Suche");
@@ -391,12 +399,11 @@ public class MainGui extends Application {
 
             });
 
-            //}
-            exportAlsZwischenablageItem.addActionListener(e -> {
-                /*if(verwaltung.getZahlAnrufe()!=0 &
+            /*exportAlsZwischenablageItem.addActionListener(e -> {
+                if(verwaltung.getZahlAnrufe()!=0 &
                         verwaltung.getRückrufeListe().size()!=0
                         & verwaltung.getPausensituationen().size()!=0
-                        & verwaltung.getReasonString().size()!=0){*/
+                        & verwaltung.getReasonString().size()!=0){
 
                 String f;
                 f = null;
@@ -410,7 +417,7 @@ public class MainGui extends Application {
                     ignored.printStackTrace();
                 }
                 Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(f), null);
-            });
+            });*/
 
             exportAlsTxtItem.addActionListener(e -> Platform.runLater(() -> {
                 MainGui gui = new MainGui();
@@ -422,8 +429,10 @@ public class MainGui extends Application {
                 try {
                     File file = fc.showSaveDialog(stage);
                     if (file != null)
-                        verwaltung.exportAlsTxt(new FileOutputStream(file + ".txt"));
+                        verwaltung.exportAlsTxt(new FileWriter(file + ".txt"));
                 } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
                     e1.printStackTrace();
                 }
             }));
@@ -669,7 +678,7 @@ public class MainGui extends Application {
 
             });
 
-            coHiLeistungsübersichtItem.addActionListener(e -> FileWebOpener.openFileAsJPGStream("/computerhilfe/Computerhilfe_Leistungsübersicht.jpg"));
+            coHiLeistungsübersichtItem.addActionListener(e -> FileWebOpener.openFileAsJPGStream("/computerhilfe/Computerhilfe_LeistungsübersichtNeu.jpg"));
 
             coHiS.addActionListener(e -> {
                 try {
@@ -737,7 +746,7 @@ public class MainGui extends Application {
                 }
             });
 
-            winsItem.addActionListener(e -> {
+            winsMennu.addActionListener(e -> {
                 try {
                     Desktop.getDesktop().browse(new URI("https://mywins.telekom.de/"));
                 } catch (IOException | URISyntaxException e1) {
@@ -1098,7 +1107,7 @@ public class MainGui extends Application {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        FileWebOpener.openLink("https://www.telekom-kwl.de/teilnehmer/");
+                        FileWebOpener.openLink("https://www.telekom-kwl.de/dtks");
                     } catch (URISyntaxException e1) {
                         e1.printStackTrace();
                     } catch (IOException e1) {
@@ -1239,6 +1248,71 @@ public class MainGui extends Application {
                 }
             });
 
+            kiToolItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("https://es-base.telekom.de/");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            telefoneItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("https://mywins.telekom.de/200818");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            mrItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("https://mywins.telekom.de/200817");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            routerItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("https://mywins.telekom.de/200816");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            fehlercodesItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        FileWebOpener.openLink("https://mywins.telekom.de/200282");
+                    } catch (URISyntaxException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
 
             final PopupMenu popup = new PopupMenu();
             final PopupMenu popup2 = new PopupMenu();
@@ -1292,6 +1366,7 @@ public class MainGui extends Application {
             seitenMenu.add(onlineStatistikenItem);
             seitenMenu.add(svtItem);
             seitenMenu.add(google);
+            seitenMenu.add(kiToolItem);
             google.add(googleSearch);
             google.add(googlePictures);
             seitenMenu.add(routerFAQMenu);
@@ -1445,7 +1520,12 @@ public class MainGui extends Application {
             telekomHilftItem.add(telekomHilftEmail);
             telekomHilftItem.add(telekomHilftNorton);
             telekomHilftItem.add(telekomHilftAGB);
-            seitenMenu.add(winsItem);
+            seitenMenu.add(winsMennu);
+            winsMennu.add(telefoneItem);
+            winsMennu.add(mrItem);
+            winsMennu.add(routerItem);
+            winsMennu.add(fehlercodesItem);
+
             seitenMenu.add(winnersCircleItem);
             seitenMenu.add(csp3VoucherItem);
             seitenMenu.add(testMailItem);
@@ -1501,18 +1581,21 @@ public class MainGui extends Application {
     }
 
     private void createApp(boolean trayisCreated, Stage primaryStage, String name) {
-
-        if (backup.exists()) {          //Restore changes
-            try {
-                if (!new ObjectInputStream(new FileInputStream(backup)).readObject().equals(java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_MONTH) + "." + java.util.Calendar.getInstance().get(java.util.Calendar.MONTH) + "." + java.util.Calendar.getInstance().get(java.util.Calendar.YEAR))) {
-                    backup.delete();
-                } else {
-                    verwaltung.restore();
+        if (!trayisCreated) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    if ((JOptionPane.showConfirmDialog(null,
+                            "Möchten Sie die Daten des\nletzen Terminberichtes überschreiben?", "Frage", JOptionPane.YES_NO_OPTION)) == 0) {
+                        verwaltung.reset();
+                    } else {
+                        verwaltung.restore();
+                        refreshToolTip();
+                    }
                 }
-            } catch (IOException | ClassNotFoundException ignored) {
-                ignored.printStackTrace();
-            }
+            });
         }
+
 
         if (name.equals("kein")) {
             createtray();
@@ -1538,7 +1621,7 @@ public class MainGui extends Application {
         MultiWindowsHandler.add();
         MultiWindowsHandler.setStage(mainStage);
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/icons/ProgrammIcon.png")));
-        stage.setTitle("BreakTool v.1.6.0");
+        stage.setTitle("BreakTool v.1.6.2");
 
 
         if (System.getProperty("os.name").startsWith("Windows")) {
